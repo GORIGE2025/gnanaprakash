@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>జనప్రకాశ్ - పిల్లల అభివృద్ధి మూల్యాంకనం</title>
+  <style>
+    :root {
+      --primary: #1B5E20;
+      --secondary: #FFA000;
+      --light: #E8F5E8;
+      --dark: #1B3F1F;
+      --text: #333;
+      --success: #4CAF50;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 1.8em;
+    }
+
+    .tagline {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .sidebar {
+      flex: 1 1 300px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .content {
+      flex: 2 1 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .domain-card {
+      background: linear-gradient(to right, #e0f2e0, #ffffff);
+      border-left: 5px solid var(--primary);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .domain-title {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.2em;
+    }
+
+    .skill-item {
+      margin: 10px 0;
+    }
+
+    .skill-item select {
+      width: 100%;
+      padding: 8px;
+      font-size: 0.95em;
+    }
+
+    .rubric-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+
+    .level {
+      display: flex;
+      align-items: center;
+      margin: 3px 0;
+    }
+
+    .level span {
+      font-size: 0.85em;
+      color: #555;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: var(--dark);
+    }
+
+    .btn-print {
+      background: #0277BD;
+    }
+
+    .btn-export {
+      background: #F57C00;
+    }
+
+    .progress-container {
+      margin-top: 20px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: #eee;
+      border-radius: 10px;
+      margin: 5px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--success);
+      width: 0%;
+      transition: width 0.4s ease;
+      text-align: center;
+      color: white;
+      font-size: 0.8em;
+      line-height: 20px;
+    }
+
+    .report-footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #777;
+      border-top: 1px dashed #ccc;
+      padding-top: 15px;
+    }
+
+    @media print {
+      button, .no-print { display: none !important; }
+      body, main { padding: 0; margin: 0; }
+      .sidebar, .content { flex: 1 1 100%; padding: 15px; }
+      .domain-card { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 768px) {
+      main { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>జనప్రకాశ్ – పిల్లల అభివృద్ధి మూల్యాంకన వ్యూహం</h1>
+    <p class="tagline">18 నైపుణ్యాలు • ఆంధ్రప్రదేశ్ ప్రభుత్వం • ECCE కార్యక్రమం</p>
+  </header>
+
+  <main>
+    <section class="sidebar">
+      <h2>విద్యార్థి సమాచారం</h2>
+      <label>పిల్లల పేరు:
+        <input type="text" id="studentName" placeholder="పిల్లల పూర్తి పేరు">
+      </label>
+      <label>వయస్సు:
+        <select id="age">
+          <option value="">- వయస్సు ఎంచుకోండి -</option>
+          <option value="3">3 సంవత్సరాలు</option>
+          <option value="4">4 సంవత్సరాలు</option>
+          <option value="5">5 సంవత్సరాలు</option>
+          <option value="6">6 సంవత్సరాలు</option>
+        </select>
+      </label>
+      <label>తరగతి:
+        <input type="text" id="class" value="LKG/Ukg">
+      </label>
+      <label>స్కూల్/ఆంగన్వాడీ:
+        <input type="text" id="school" placeholder="పాఠశాల పేరు">
+      </label>
+
+      <div class="progress-container">
+        <h3>మూల్యాంకన పురోగతి</h3>
+        <div id="progressOverall" class="progress-bar">
+          <div class="progress-fill" style="width:0%">0%</div>
+        </div>
+
+        <h4>ప్రకారము పురోగతి</h4>
+        <div class="domain-progress">
+          <div>A. శారీరక: <div id="progA" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+          <div>B. జ్ఞానాత్మక: <div id="progB" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+          <div>C. తెలుగు: <div id="progC" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+          <div>D. ఆంగ్లం: <div id="progD" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+          <div>E. సౌందర్యం: <div id="progE" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+          <div>F. సామాజిక-భావోద్వేగం: <div id="progF" class="progress-bar"><div class="progress-fill">0%</div></div></div>
+        </div>
+      </div>
+
+      <button onclick="exportData()" class="btn-export">డేటా ఎగుమతి చేయి (JSON)</button>
+      <button onclick="window.print()" class="btn-print">ప్రింట్ చేయి</button>
+    </section>
+
+    <section class="content">
+      <form id="assessmentForm">
+        <!-- A. Physical Development -->
+        <div class="domain-card">
+          <div class="domain-title">A. శారీరక అభివృద్ధి</div>
+          <div class="skill-item">
+            <label>1. స్థూల కండరా అభివృద్ధి</label>
+            <select name="physical_gross">
+              <option value="0">— ఎంచుకోండి —</option>
+              <option value="1">సహాయంతో చలనం</option>
+              <option value="2">స్వయంగా, కొంత అసౌకర్యంతో</option>
+              <option value="3">స్థిరంగా, కొనసాగూ కదలిక</option>
+              <option value="4">అధిక సామర్థ్యం & సమతుల్యత</option>
+            </select>
+          </div>
+          <div class="skill-item">
+            <label>2. సూక్ష్మ కండరా అభివృద్ధి</label>
+            <select name="physical_fine">
+              <option value="0">— ఎంచుకోండి —</option>
+              <option value="1">కష్టపడతాడు (ఉదా: పెన్సిల్ పట్టడం)</option>
+              <option value="2">ప్రయత్నంతో నియంత్రణ</option>
+              <option value="3">సులభంగా చిన్న వస్తువులు ఉపయోగించడం</option>
+              <option value="4">సృజనాత్మకంగా మరియు ఖచ్చితంగా</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- B. Cognitive Development -->
+        <div class="domain-card">
+          <div class="domain-title">B. జ్ఞానాత్మక అభివృద్ధి</div>
+          <div class="skill-item">
+            <label>3. క్రమానుగతంగా ఆలోచించడం</label>
+            <select name="cognitive_sequencing">
+              <option value="0">— ఎంచుకోండి —</option>
+              <option value="1">బేసిక్ సీక్వెన్స్</option>
+              <option value="2">2–3 దశలు</option>
+              <option value="3">4–5 దశలు</option>
+              <option value="4">అంతర్ముఖ నిర్మాణంతో</option>
+            </select>
+          </div>
+          <div class="skill-item">
+            <label>4. వర్గీకరణ</label>
+            <select name="cognitive_classification">
+              <option value="0">— ఎంచుకోండి —</option>
+              <option value="1">ఒకే లక్షణం (రంగు)</option>
+              <option value="2">రెండు లక్షణాలు (రంగు + ఆకారం)</option>
+              <option value="3">స్వతంత్రంగా బహుళ లక్షణాలు</option>
+              <option value="4">సముచిత ఉపసమితులు</option>
+            </select>
+          </div>
+          <div class="skill-item">
+            <label>5. సమస్య పరిష్కారం</label>
+            <select name="cognitive_problem">
+              <option value="0">— ఎంచుకోండి —</option>
+              <option value="1">సమస్య గుర్తించడం</option>
+              <option value="2

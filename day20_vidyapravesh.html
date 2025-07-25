@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>విద్యాప్రవేశ్ - 20వ రోజు ప్రణాళిక</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thammudu+2:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #ffc107;
+            --background-color: #fdfaf3;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --header-bg: #4a90e2;
+            --telugu-header-bg: #f5a623;
+            --english-header-bg: #50e3c2;
+            --math-header-bg: #bd10e0;
+            --sensory-header-bg: #e94e77;
+        }
+
+        body {
+            font-family: 'Poppins', 'Baloo Thammudu 2', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .main-header {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--header-bg);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .main-header h1 {
+            margin: 0;
+            font-family: 'Baloo Thammudu 2', cursive;
+            font-size: 2.5em;
+        }
+
+        .main-header p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+
+        .subject-section {
+            margin-bottom: 30px;
+        }
+
+        .subject-header {
+            padding: 10px 20px;
+            color: white;
+            border-radius: 8px 8px 0 0;
+            font-family: 'Baloo Thammudu 2', cursive;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .telugu { background-color: var(--telugu-header-bg); }
+        .english { background-color: var(--english-header-bg); }
+        .math { background-color: var(--math-header-bg); }
+        .sensory { background-color: var(--sensory-header-bg); }
+
+        .subject-header i {
+            margin-right: 15px;
+        }
+
+        .activity-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .activity-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+            font-size: 1.3em;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            max-width: 300px;
+            margin-right: 10px;
+        }
+
+        .interactive-area {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            border-radius: 5px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+
+        /* English Sound Sort Activity */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        .image-gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .image-gallery img.highlight {
+            border-color: var(--secondary-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 10px var(--secondary-color);
+        }
+        .filter-buttons button {
+            margin: 5px;
+            background-color: #555;
+        }
+        .filter-buttons button:hover {
+             background-color: #333;
+        }
+
+        /* Syllable Drummer */
+        .syllable-output span {
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 1.5em;
+        }
+        
+        /* Math What If */
+        #whatIfQuestion {
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--math-header-bg);
+            background-color: #fdeff9;
+            padding: 10px;
+            border-left: 5px solid var(--math-header-bg);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .main-header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="main-header">
+            <h1>🌼 విద్యాప్రవేశ్ 🌼</h1>
+            <p>45 రోజుల తరగతి సంసిద్ధతా కార్యక్రమం</p>
+            <p>💫 ఇరవైవ రోజు (22/7/2025) - 1, 2 తరగతుల ప్రణాళిక 💫</p>
+        </header>
+
+        <!-- Telugu Section -->
+        <section class="subject-section">
+            <div class="subject-header telugu">
+                <i class="fa-solid fa-book-open-reader"></i> 🏵️ తెలుగు కృత్యాలు 🏵️
+            </div>
+            <div class="activity-card">
+                <h3>🔸 కథ:- రోల్ ప్లే</h3>
+                <p>ఏదైనా ఒక కథను విద్యార్థులచే రోల్ ప్లే చేసి చూపమనండి. వారి సృజనాత్మకతను ప్రోత్సహించండి.</p>
+            </div>
+            <div class="activity-card">
+                <h3>🔸 🔊 ధ్వని ఆట:- పదాలను విడదీయడం</h3>
+                <p>రెండు అక్షరాల పదాలను చెప్పి, వాటిని విడదీయమనండి. ఉదా: కమల -> క, మ, ల.</p>
+                <div class="interactive-area">
+                    <input type="text" id="teluguWordInput" placeholder="పదం టైప్ చేయండి (ఉదా: వల)">
+                    <button id="splitWordBtn">విడదీయి</button>
+                    <div id="splitWordResult" class="result"></div>
+                </div>
+            </div>
+            <div class="activity-card">
+                <h3>🔸 🎲 అక్షరాలతో ఆట</h3>
+                <p>చిత్రాలను చూపించి వాటి పేర్లను, వాటికి చెందిన అక్షర శబ్దాలను చెప్పమనండి.</p>
+            </div>
+             <div class="activity-card">
+                <h3>🔸 ✍🏻 వ్రాయడం: మట్టితో అక్షరాలు</h3>
+                <p>పిల్లలకు మట్టిని ఇచ్చి, వారికి నచ్చిన అక్షరాలను తయారు చేయమనండి. ఇది స్పర్శ జ్ఞానాన్ని పెంచుతుంది.</p>
+            </div>
+            <div class="activity-card">
+                <h3>🔸 🎶 పాట-పద్యం:- చిన్న పడవ-పెద్ద పడవ</h3>
+                <p>ఈ గేయాన్ని పిల్లలచే రాగయుక్తంగా పాడించండి.</p>
+                 <div class="interactive-area">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/S2Y2dMZXgYc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- English Section -->
+        <section class="subject-section">
+            <div class="subject-header english">
+                <i class="fa-solid fa-language"></i> 🏵️ English 🏵️
+            </div>
+            <div class="activity-card">
+                <h3>SOUND 🎧 SORTING</h3>
+                <p>Show picture cards to the children. Ask them to identify the starting letter sound. For example, ask "Which pictures start with the 'B' sound?"</p>
+                <div class="interactive-area">
+                    <div class="filter-buttons">
+                        <span>Filter by sound:</span>
+                        <button onclick="filterImages('b')">"B" sound</button>
+                        <button onclick="filterImages('m')">"M" sound</button>
+                        <button onclick="filterImages('c')">"C" sound</button>
+                         <button onclick="filterImages('t')">"T" sound</button>
+                        <button onclick="filterImages('all')">Show All</button>
+                    </div>
+                    <div id="imageGallery" class="image-gallery">
+                        <!-- Images will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Math Section -->
+        <section class="subject-section">
+            <div class="subject-header math">
+                <i class="fa-solid fa-calculator"></i> 🏵️ గణితం 🏵️
+            </div>
+            <div class="activity-card">
+                <h3>WHAT IF....?</h3>
+                <p>పిల్లలనీ ఊహాజనితమైన / ఆలోచింపజేసే / వినూత్నంగా ఆలోచన చేసేటువంటి ప్రశ్నలు అడగాలి. చర్చలు జరగాలి. స్వేచ్ఛగా జవాబులు చెప్పనివ్వాలి.</p>
+                 <div class="interactive-area">
+                    <p><strong>Example Question:</strong></p>
+                    <p id="whatIfQuestion">What if trees could walk?</p>
+                    <button id="newQuestionBtn">కొత్త ప్రశ్న అడుగు</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sensory Readiness Section -->
+        <section class="subject-section">
+            <div class="subject-header sensory">
+                <i class="fa-solid fa-hand-paper"></i> 🏵️ SENSORY READINESS ACTIVITY 🏵️
+            </div>
+             <div class="activity-card">
+                <h3>DRUM THE SYLLABLES..</h3>
+                <p>ఒక పదం చెప్పి, అందులోని ప్రతీ beat/sound (syllable)కి డ్రమ్/టేబుల్ పై తట్టడం లేదా చప్పట్లు కొట్టమనాలి. ఉదా: BA-NA-NA -> 3 చప్పట్లు.</p>
+                <div class="interactive-area">
+                    <input type="text" id="syllableInput" placeholder="Enter a word (e.g., banana)">
+                    <button id="drumSyllableBtn">Drum It!</button>
+                    <div id="syllableResult" class="result"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // JavaScript Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Telugu: Split Word Activity
+            const teluguWordInput = document.getElementById('teluguWordInput');
+            const splitWordBtn = document.getElementById('splitWordBtn');
+            const splitWordResult = document.getElementById('splitWordResult');
+
+            splitWordBtn.addEventListener('click', () => {
+                const word = teluguWordInput.value.trim();
+                if (word) {
+                    const characters = word.split('').join(', ');
+                    splitWordResult.innerHTML = `విడదీస్తే: <span style="color: #dc3545;">${characters}</span>`;
+                } else {
+                    splitWordResult.textContent = 'దయచేసి ఒక పదాన్ని నమోదు చేయండి.';
+                }
+            });
+
+            // 2. English: Sound Sorting Activity
+            const imageGallery = document.getElementById('imageGallery');
+            const images = [
+                { src: 'https://img.icons8.com/plasticine/100/000000/ball.png', sound: 'b', alt: 'Ball' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/mailbox-closed-flag-down.png', sound: 'm', alt: 'Mat (Mailbox)' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/cat.png', sound: 'c', alt: 'Cat' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/tap.png', sound: 't', alt: 'Tap' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/banana.png', sound: 'b', alt: 'Banana' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/moon-symbol.png', sound: 'm', alt: 'Moon' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/car.png', sound: 'c', alt: 'Car' },
+                { src: 'https://img.icons8.com/plasticine/100/000000/table.png', sound: 't', alt: 'Table' },
+            ];
+
+            // Populate gallery
+            images.forEach(imgData => {
+                const img = document.createElement('img');
+                img.src = imgData.src;
+                img.alt = imgData.alt;
+                img.dataset.sound = imgData.sound;
+                imageGallery.appendChild(img);
+            });
+            
+            window.filterImages = function(sound) {
+                const allImages = imageGallery.querySelectorAll('img');
+                allImages.forEach(img => {
+                    if (sound === 'all' || img.dataset.sound === sound) {
+                        img.classList.add('highlight');
+                    } else {
+                        img.classList.remove('highlight');
+                    }
+                });
+            }
+            // Initially show all
+            filterImages('all');
+
+            // 3. Math: What If...? Activity
+            const whatIfQuestionEl = document.getElementById('whatIfQuestion');
+            const newQuestionBtn = document.getElementById('newQuestionBtn');
+            const questions = [
+                "What if trees could walk?",
+                "What if animals could talk?",
+                "What if we could fly?",
+                "What if clouds were made of cotton candy?",
+                "What if it rained juice instead of water?",
+                "What if our toys came to life at night?"
+            ];
+
+            newQuestionBtn.addEventListener('click', () => {
+                const currentQuestion = whatIfQuestionEl.textContent;
+                let newQuestion;
+                do {
+                    newQuestion = questions[Math.floor(Math.random() * questions.length)];
+                } while (newQuestion === currentQuestion);
+                whatIfQuestionEl.textContent = newQuestion;
+            });
+            
+            // 4. Sensory: Drum the Syllables
+            const syllableInput = document.getElementById('syllableInput');
+            const drumSyllableBtn = document.getElementById('drumSyllableBtn');
+            const syllableResult = document.getElementById('syllableResult');
+
+            drumSyllableBtn.addEventListener('click', () => {
+                const word = syllableInput.value.trim().toLowerCase();
+                if (word) {
+                    // Simple syllable approximation by vowel groups for English demo
+                    // A more accurate syllabification is complex. For this activity, we can use a simpler rule.
+                    // For Telugu, we can just split by characters as each character is a syllable.
+                    // Let's use a simple vowel-based split for English words for demonstration.
+                    let syllables;
+                    if (/^[a-zA-Z]+$/.test(word)) { // If English
+                         syllables = word.match(/[aeiouy]+[^aeiouy]*/gi) || [word];
+                    } else { // Assume Telugu or other, split by character
+                         syllables = word.split('');
+                    }
+
+                    let outputHTML = '';
+                    syllables.forEach(syllable => {
+                        outputHTML += `<span>${syllable.trim()}</span><span>👏🏻</span>`;
+                    });
+                    
+                    syllableResult.innerHTML = `${outputHTML} <br> {TOTAL ${syllables.length} CLAPS 👏🏻}`;
+                } else {
+                    syllableResult.textContent = 'Please enter a word.';
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
