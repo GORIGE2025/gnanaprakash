@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<title>జ్ఞాన-ప్రకాశ్ 18 నైపుణ్యాల కార్డు</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+  :root{
+      --primary:#006064; --card:#E0F7FA; --accent:#00838F;
+      font-family:"Noto Sans Telugu","Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  header{background:var(--primary);color:#fff;padding:.8rem 1rem}
+  h1,h2{margin:.4em 0;font-size:1.1em;font-weight:600}
+  #wrapper{display:flex;height:calc(100vh - 55px)}
+  nav{
+      width:210px;background:#fafafa;padding:1rem;
+      overflow-y:auto;border-right:1px solid #ccc
+  }
+  main{flex:1;padding:1rem;overflow-y:auto}
+  button{
+      cursor:pointer;border:none;padding:.6rem;
+      margin:.2rem 0;width:100%;background:var(--card);
+      box-shadow:0 2px 4px rgba(0,0,0,.15);
+      transition:.2s
+  }
+  button:hover{background:var(--accent);color:#fff}
+  .card{
+      background:#fff;border:1px solid #ddd;
+      border-radius:6px;padding:.8rem;margin:.5rem 0
+  }
+  table{width:100%;border-collapse:collapse;font-size:.8em}
+  th,td{padding:4px 6px;border-bottom:1px solid #eee}
+  th{background:#f7f7f7}
+  form{margin-top:.5rem;font-size:.9em}
+  label{display:inline-block;min-width:120px;margin:.25em 0}
+  textarea,select{margin:.2em 0;min-width:60%}
+  .legend{position:relative;top:-10px;font-size:.7em;color:#444;margin-bottom:8px}
+  @media(max-width:720px){#wrapper{flex-direction:column}nav{width:100%;display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>జ్ఞాన-ప్రకాశ్ 18-నైపుణ్యాల రుబ్రిక్ & డేటా కార్డు</h1>
+</header>
+
+<div id="wrapper">
+  <!-- LEFT NAV -->
+  <nav>
+     <h2>చర్యలు</h2>
+     <button onclick="showPage('dashboard')">డాష్-బోర్డు</button>
+     <button onclick="showPage('data_entry')">డేటా ఎంట్రీ</button>
+     <button onclick="printCard()">రుబ్రిక్ లేబల్ ప్రింట్</button>
+     <h2>నైపుణ్యాలు</h2>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main_area"></main>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+/* -------------------------------------------------
+   CONFIGURATION – 18 skills
+--------------------------------------------------*/
+const ALL_SKILLS = [
+   { code:'A1', name:'స్థూల కండరా', rng:'A(శారీరక)'   },
+   { code:'A2', name:'సూక్ష్మ కండరా', rng:'A' },
+   { code:'B1', name:'క్రమానుసార ఆలోచన', rng:'B(జ్ఞానాత్మక)' },
+   { code:'B2', name:'వర్గీకరణ', rng:'B' },
+   { code:'B3', name:'సమస్యపరిష్కారం', rng:'B' },
+   { code:'B4', name:'ముందస్తు కొలత', rng:'B' },
+   { code:'B5', name:'నమూనా గుర్తింపు', rng:'B' },
+   { code:'B6', name:'సంఖ్య గుర్తింపు', rng:'B' },
+   { code:'B7', name:'సంఖ్య ప్రక్రియలు', rng:'B' },
+   { code:'C1', name:'తెలుగు శ్రవణ గ్రహణం', rng:'C(తెలుగు)' },
+   { code:'C2', name:'తెలుగు పదజాలం', rng:'C' },
+   { code:'C3', name:'తెలుగు మౌఖికం', rng:'C' },
+   { code:'C4', name:'తెలుగు చదవడం', rng:'C' },
+   { code:'D1', name:'ఆంగ్ల శ్రవణం', rng:'D(ఆంగ్లం)' },
+   { code:'D2', name:'ఆంగ్ల పదజాలం', rng:'D' },
+   { code:'D3', name:'ఆంగ్ల చదవడం-అర్థం', rng:'D' },
+   { code:'E1', name:'కళ వ్యక్తీకరణ', rng:'E(సౌందర్యాత్మక)' },
+   { code:'F1', name:'సామాజిక-భావోద్వేగం', rng:'F(సామాజిక)' }
+];
+
+/* -------------------------------------------------
+   ROUTER
+--------------------------------------------------*/
+const pages = {
+  dashboard: dashboardPage,
+  data_entry: dataEntryPage
+};
+
+function showPage(id){
+  document.getElementById('main_area').innerHTML = '';
+  if(pages[id]) pages[id]();
+}
+
+/* -------------------------------------------------
+   DASHBOARD
+--------------------------------------------------*/
+function dashboardPage(){
+  let html = `<h2>Dashboard</h2>`;
+  let rec = JSON.parse(localStorage.getItem("lenient_snapshot"));
+  if(!rec){
+     html+=`<p>డేటా ఇంతకు లేదు. “డేటా ఎంట్రీ”కి వెళ్లండి</p>`;
+     main_area.innerHTML=html; return;
+  }
+  html+='<table><tr><th>నైపుణ్యం</th><th>స్థాయి</th><th>వ్యాఖ్య</th></tr>';
+  ALL_SKILLS.forEach(s=>{
+     html+=`<tr><td>${s.code} - ${s.name}</td><td>${rec[s.code]||'-'}</td><td>${rec[s.code+'_cmt']||''}</td></tr>`;
+  });
+  html+='</table>';
+  html+=`<br><button onclick="localStorage.clear();showPage('dashboard')">డేటా తొలగించు</button>`;
+  main_area.innerHTML=html;
+}
+
+/* -------------------------------------------------
+   DATA ENTRY
+--------------------------------------------------*/
+function dataEntryPage(){
+  let html = `<h2>నైపుణ్యాల ఎంట్రీ  
+          <button onclick="showPage('dashboard')" style="width:auto;float:right;background:#006064;color:white">డాష్-బోర్డ్</button>
+   </h2>
+   <form id="entry_form">`;
+  html+=`<label>పిల్లవాడి పేరు: </label><input type="text" id="kid_name" required><br>`;
+  html+=`<label>పాఠశాల / అంగన్: </label><input type="text" id="school" required>`;
+  html+=`<div class="legend"><strong>స్థాయులు:</strong> 1=ఆరంభ, 2=అభివృద్ధి, 3=ప్రాగతి, 4=ప్రావీణ్య</div>`;
+  html+='<table><tr><th>స్కిల్</th><th>స్థాయి</th><th>వ్యాఖ్య</th></tr>';
+  ALL_SKILLS.forEach(s=>{
+    html+=`<tr><td>${s.code} ${s.name}</td>
+               <td><select id="${s.code}">
+                   <option value="0">--</option>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+               </select></td>
+               <td><input type="text" id="${s.code}_cmt" placeholder="వ్యాఖ్య" style="width:100%"></td>
+            </tr>`;
+  });
+  html+='</table><button type="submit">సేవ్</button></form>';
+  main_area.innerHTML=html;
+
+  document.getElementById('entry_form').onsubmit=e=>{
+     e.preventDefault();
+     let record = {};
+     record.kid=document.getElementById('kid_name').value;
+     record.sch=document.getElementById('school').value;
+     ALL_SKILLS.forEach(s=>{
+        record[s.code] = document.getElementById(s.code).value;
+        record[s.code+'_cmt'] = document.getElementById(s.code+'_cmt').value;
+     });
+     localStorage.setItem("lenient_snapshot", JSON.stringify(record));
+     alert("జాబితా భద్రపరచబడింది");
+     showPage('dashboard');
+  };
+}
+
+/* -------------------------------------------------
+   PRINTABLE CARDS
+--------------------------------------------------*/
+function printCard(){
+  const style = `<style>@media print{@page{margin:4mm}}
+    .print-card{width:3.5in;height:2in;border:1px solid #000;page-break-inside:avoid;margin:2mm;font-size:8pt;display:flex;flex-direction:column;justify-content:space-between;padding:2mm}
+    .row{display:flex;justify-content:space-between}
+    .skill{font-weight:bold}</style>`;
+  let body='';
+  ALL_SKILLS.forEach(sk=>{
+     body+=`
+     <div class="print-card">
+        <div class="row"><span class="skill">${sk.code} ${sk.name}</span><span>${sk.rng}</span></div>
+        <div>స్థాయి: ___ 1  ___2  ___3  ___4</div>
+        <div>వ్యాఖ్య: _______________________</div>
+        <div style="text-align:right;font-size:7pt;margin-top:4px">నమూనా: AP-JnanaPrakash-2025</div>
+     </div>`;
+  });
+  const wnd = window.open('','','width=700,height=500');
+  wnd.document.write('<!DOCTYPE html><html><head><title>Print Cards</title>'+style+'</head><body>'+body+'</body></html>');
+  wnd.focus(); wnd.print(); wnd.close();
+}
+
+/* -------------------------------------------------
+   INIT
+--------------------------------------------------*/
+showPage('dashboard');
+</script>
+</body>
+</html>
